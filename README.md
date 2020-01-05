@@ -26,3 +26,17 @@ With the application, a user will be able to:
 ## Technology Used
 
 ## Setup Instructions
+
+
+* Clone this repository to your local computer.
+* Ensure you have python3.6 installed in your computer.
+* From the terminal navigate to the cloned project folder.
+* Create a virtual environment and access the folder via your virtual amchine.
+* Visit https://newsapi.org/ and register for an API key.
+* Create start.sh file and in it write the following lines:
+```
+ export NEWS_API_KEY='<Your-Api-Key>'
+ python3.6 manage.py server
+```
+* Run ```chmod +x start.sh``` follwoed by ``` ./start.sh ``` while in the project folder to start the project.
+* Once started, the project can be accessed on your localhost using the address: ``` localhost:5000 ```

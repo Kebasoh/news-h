@@ -25,6 +25,10 @@ With the application, a user will be able to:
 
 ## Technology Used
 
+* Python v3.6
+* Boostrap
+* Flask
+
 ## Setup Instructions
 
 

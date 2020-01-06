@@ -1,2 +1,2 @@
-export NEWS_API_KEY="acd6a461b082463ebd2894a046b5e586"
-export SECRET_KEY="yours"
+NEWS_API_KEY="acd6a461b082463ebd2894a046b5e586"
+SECRET_KEY="yours"

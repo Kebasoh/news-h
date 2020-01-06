@@ -1,28 +1,38 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template, redirect, url_for, request
 from . import main
-from ..requests import get_sources,get_articles
 from ..models import Sources
+from ..request import get_sources, get_articles
 
-#views
+
 @main.route('/')
 def index():
-	'''
-	view root page function that returns the index the page and its data
-	'''
-	sources = get_sources('business')
-	sports_sources = get_sources('sports')
-	technology_sources = get_sources('technology')
-	entertainment_sources = get_sources('entertainment')
-	title = "News Highlighter"
 
-	return render_template('index.html',title = title, sources = sources,sports_sources = sports_sources,technology_sources = technology_sources,entertainment_sources = entertainment_sources)
+    # getting general news
 
-@main.route('/sources/<id>')
-def articles(id):
-	'''
-	view articles page
-	'''
-	articles = get_articles(id)
-	title = f'NH | {id}'
+    general_news = get_sources('general')
+    business_news = get_sources('business')
+    entertainment_news = get_sources('entertainment')
+    sports_news = get_sources('sports')
+    technology_news = get_sources('technology')
+    science_news = get_sources('science')
+    health_news = get_sources('health')
 
-	return render_template('articles.html',title= title,articles = articles)
+
+    title = 'Home-Best News Update Site'
+
+    return render_template('index.html', title=title, General=general_news, Business=business_news,
+                           Entertainment=entertainment_news, Sports=sports_news, Technology=technology_news,
+                           Science=science_news, Health=health_news)
+
+
+@main.route('/articles/<source_id>&<int:per_page>')
+def articles(source_id, per_page):
+    '''
+    Function that returns articles based on their sources
+    '''
+
+    news_source = get_articles(source_id, per_page)
+    title = f'{source_id} | All Articles'
+    return render_template('articles.html', title=title, name=source_id, news=news_source)
+
+

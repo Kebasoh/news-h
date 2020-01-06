@@ -1,45 +1,33 @@
-{% extends 'base.html'%}
-{% block content%}
-<div class="container">
+{% extends 'base.html' %} {% block content %}
 
-	<!-- Popular movie section  -->
-        <h3> Top Headlines</h3>
-        {% for article_row in articles | batch(4)%}
-
-	        <div class="row">
-	       
-		        {% for article in article_row %}
-
-		        	<div class="col-md-3">
-				        <div class="thumbnail">
-				        <a href="{{article.url}}" target="_blank">
-						      <img src="{{article.image}}" alt="{{article.title}}" class="img-responsive" styles="height:30px">
-						      </a>
-						      <div class="caption">
-						        <h4><a href="{{article.url}}" target="_blank">{{article.title |truncate(35)}}</a></h4>
-						        <p>{{article.description | truncate(80)}}</p>
-						        <a href="{{article.url}}" target="_blank"> Read More</a>
-
-						        
-						      </div>
-						      <div class="footer">
-						      Published at: {{article.date}}
-						      
-								
-							</div>
-	  					</div>
-
-
-			     	</div>
-			     	
-		        {% endfor %}
-	        
-	        </div>
-         
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 heading">
+            <h1> {{name}} </h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for article in news %}
+        <div class="col-sm-6">
+            <div class="img-box mb-4">
+                <a href={{article.url}} target="_blank">
+                    <img class="thumbnail img-el img-fluid" src={{article.urlToImage}} alt="IMAGE LOADING...">
+                </a>
+            </div>
+            <div class="words">
+                <h4 class="text-bold"> {{article.title}} </h4>
+                <p>Posted by
+                    <span class="text-muted date-author">{{article.author}}</span>
+                    on
+                    <span class="text-muted date-author">{{article.publishedAt}}</span>
+                </p>
+                <p> {{article.description}}...
+                    <a href={{article.url}} target="_blank"><button type="button" class="btn btn-outline-primary">Read more</button></a>
+                </p>
+                <hr>
+            </div>
+        </div>
         {% endfor %}
-        
-	
+    </div>
 </div>
-
-
-{%endblock%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> {% endblock%}
